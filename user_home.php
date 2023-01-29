@@ -247,7 +247,7 @@
 
                 $patient_user_id=$_SESSION['patient_user_id'];
 
-                $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'PICKED-UP'";
+                $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'PICKED-UP'";
 
                 $result=mysqli_query($connect,$sql);
                 $chck=mysqli_num_rows($result);
@@ -269,10 +269,10 @@
                   {
                     echo '<tr>';
                     echo '<td>'.$data['medicine_name'].'</td>';
-                    echo '<td>'.$data['dosage_quantity'].$data['medicine_type_measure'].'</td>';
+                    echo '<td>'.$data['dosage_quantity'].' '.$data['medicine_type_measure'].'</td>';
                     echo '<td>'.$data['dosage_time'].'</td>';
-                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">Received</button></a></td>';
-                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">In-validate</button></a></td>';
+                    echo '<td><form method="post"><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
+                    echo '<td><input type="submit" class="btn btn-primary" name= "button_invalidate" value="In-validate"></form></td>';
                     //echo $looping;
                     echo '</tr>';
                     $looping++;
@@ -298,7 +298,7 @@
 
                 $customer_id=$_SESSION['customer_id'];
 
-                $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'DELIVERED'";
+                $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'DELIVERED'";
 
                 $result=mysqli_query($connect,$sql);
                 $chck=mysqli_num_rows($result);
