@@ -23,7 +23,7 @@
     <div class="cover-container  d-flex w-400 h-400 p-3 mx-auto flex-column" style='background-color: #7c917f;max-width: 80em;'>
       <header class="masthead mb-auto" >
         <div class="inner">
-          <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>Bettermart</b></h3>
+          <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPAT</b></h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="#">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
@@ -36,15 +36,15 @@
       <main role="main" class="inner cover" id="Main">
         <div id="display">
           <h1 class="cover-heading">We got you!</h1>
-          <p class="lead">Grocery shopping? No worries, it is just a click away!</p>
-		  <img src="cp2.png" style="max-width: 76%;height: auto;">
+          <p class="lead">INPAT - Our Interactive and Efficient Medicine Management System!</p>
+		  <img src="Images/Patient_care.png" style="max-width: 76%;height: auto;">
 		<br>
         </div>
       </main>
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Home page for Bettermart</a>, by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>.</p>
+          <p>Home page for INPAT</a>, by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>.</p>
         </div>
       </footer>
     </div>

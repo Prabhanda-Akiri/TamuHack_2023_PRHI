@@ -51,7 +51,7 @@
     <div class="cover-container  d-flex w-400 h-400 p-3 mx-auto flex-column" style='background-color: #7c917f;max-width: 80em;'>
       <header class="masthead mb-auto" >
         <div class="inner">
-          <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>Bettermart</b></h3>
+          <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPAT</b></h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="nav_home.php">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
@@ -75,7 +75,7 @@
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Contact page for Bettermart</a>, by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>.</p>
+          <p>Contact page for INPAT</a>, by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>.</p>
         </div>
       </footer>
     </div>

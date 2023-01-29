@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>User Home</title>
+    <title>Nurse Home</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,6 +36,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../bootstrap/js/ie-emulation-modes-warning.js"></script>
+
   </head>
 <style type="text/css">
     .sidenav a, .dropdown-btn {
@@ -176,6 +177,8 @@
  * Navbar
  */
 
+
+
 .navbar .form-control {
   padding: .75rem 1rem;
   border-width: 0;
@@ -193,7 +196,6 @@
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
   </style>
-
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -205,7 +207,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white;"><b>INPAT</b></a>
+          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>Bettermart</b></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -225,9 +227,9 @@
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky" >
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link" href="user_home.php"><span data-feather="home"></span><b>Home</b></a></li>
-            <li class="nav-item"><a class="nav-link" href="user_myaccount.php"><span data-feather="calendar"></span><b>My account</b></a></li>
-            <li class="nav-item"><a  class="nav-link active" href="user_history.php"><span data-feather="clock"></span><b>History</b><span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="#"><span data-feather="home"></span><b>Home</b><span class="sr-only">(current)</span></a></li>
+            <li><a class="nav-link" href="user_myaccount.php"><span data-feather="calendar"></span><b>My account</b></a></li>
+            <li><a  class="nav-link" href="user_history.php"><span data-feather="clock"></span><b>History</b></a></li>
           </ul>
 		  </div>
         </div>
@@ -235,7 +237,7 @@
         <!-- Content div in user home -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h2 class="sub-header">Your History</h2><hr>
+          <h2 class="cover-heading">Medicines On the Way</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
 
@@ -243,34 +245,52 @@
 
                 include "sql_access.php";
 
-                $customer_id=$_SESSION['customer_id'];
+                $patient_user_id=$_SESSION['patient_user_id'];
+                $curr_time = time();
+                $sql1="(select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'IDLE') UNION (select m.medicine_name, pr.dosage_quantity, mt.medicine_type_measure, pr.dosage_time, pr.prescription_id from prescription pr inner join medicine m on pr.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = pr.patient_id where pt.patient_user_id = 'john.gary@gmail.com' and pr.dosage_time > '$curr_time' order by p.dosage_time asc)";
+                // $result1=mysqli_query($connect,$sql1);
+                // $result2=mysqli_query($connect,$sql2);
+                
+                $result1=mysqli_query($connect,$sql1);
+                while($result1) {
+                    echo print_r($result1);
+                }
+                $chck1=mysqli_num_rows($result1);
+                $chck2=mysqli_num_rows($result2);
 
-                $sql="select p.product_name,h.no_of_views, p.product_offer, p.product_price from product p inner join history h on p.product_id=h.product_id where h.customer_id='$customer_id' and p.product_status='accepted'";
-
-                $result=mysqli_query($connect,$sql);
-                $chck=mysqli_num_rows($result);
-
-                if($chck>0)
+                if($chck1>0 or $chck2>0)
                 {
                   echo '
                      <thead>
                       <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Offer</th>
-                        <th>Number of times viewed</th>
+                      <th>Medicine</th>
+                      <th>Dosage</th>
+                      <th>Prescription Time</th>
                       </tr>
                     </thead>
                     <tbody>
                   ';
                   $looping=0;
-                  while ($data=mysqli_fetch_array($result))
+                  while ($data1=mysqli_fetch_array($result1))
                   {
                     echo '<tr>';
-                    echo '<td>'.$data['product_name'].'</td>';
-                    echo '<td>'.$data['product_price'].'</td>';
-                    echo '<td>'.$data['product_offer'].'</td>';
-                    echo '<td>'.$data['no_of_views'].'</td>';
+                    echo '<td>'.$data1['medicine_name'].'</td>';
+                    echo '<td>'.$data1['dosage_quantity'].' '.$data1['medicine_type_measure'].'</td>';
+                    echo '<td>'.$data1['dosage_time'].'</td>';
+                    echo '<td><form method="post"><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
+                    echo '<td><input type="submit" class="btn btn-primary" name= "button_invalidate" value="In-validate"></form></td>';
+                    //echo $looping;
+                    echo '</tr>';
+                    $looping++;
+                  }
+                  while ($data2=mysqli_fetch_array($result2))
+                  {
+                    echo '<tr>';
+                    echo '<td>'.$data2['medicine_name'].'</td>';
+                    echo '<td>'.$data2['dosage_quantity'].' '.$data2['medicine_type_measure'].'</td>';
+                    echo '<td>'.$data2['dosage_time'].'</td>';
+                    echo '<td><form method="post"><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
+                    echo '<td><input type="submit" class="btn btn-primary" name= "button_invalidate" value="In-validate"></form></td>';
                     //echo $looping;
                     echo '</tr>';
                     $looping++;
@@ -281,12 +301,11 @@
 
                 else
                 {
-                    echo '<th>No Recommendations yet</th>';
+                    echo '<th>No Medications to give now</th>';
                 }
               ?>
             
           </div>
-
 
         </div>
       </div>
@@ -297,8 +316,9 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
@@ -308,6 +328,27 @@
     <script>
       feather.replace()
     </script>
+	
   </body>
 </html>
 
+<?php
+/*  
+    $sql="select p.product_id from product p";
+
+    $result=mysqli_query($connect,$sql);
+
+    if($_GET)
+    {
+    while($data=mysqli_fetch_array($result))
+    {
+      if(isset($_GET[$data['product_id']]))
+      {
+        $_SESSION['product_id']=$data['product_id'];
+        echo "<script> location.href='product_description.php'; </script>";
+        exit;
+      }
+    }
+    }
+*/
+?>
