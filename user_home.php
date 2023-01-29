@@ -237,7 +237,7 @@
         <!-- Content div in user home -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h2 class="cover-heading">Your Recommendations</h2><hr>
+          <h2 class="cover-heading">Medicines On the Way</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
 
@@ -257,9 +257,9 @@
                   echo '
                      <thead>
                       <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Offer</th>
+                      <th>Medicine</th>
+                      <th>Dosage</th>
+                      <th>Prescription Time</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -271,7 +271,8 @@
                     echo '<td>'.$data['product_name'].'</td>';
                     echo '<td>'.$data['product_price'].'</td>';
                     echo '<td>'.$data['product_offer'].'</td>';
-                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">View Product</button></a></td>';
+                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">Received</button></a></td>';
+                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">In-validate</button></a></td>';
                     //echo $looping;
                     echo '</tr>';
                     $looping++;
@@ -282,13 +283,13 @@
 
                 else
                 {
-                    echo '<th>No Recommendations yet</th>';
+                    echo '<th>No Medications to give now</th>';
                 }
               ?>
             
           </div>
 
-          <h2 class="sub-header">Hot Picks for you</h2><hr>
+          <h2 class="sub-header">Medicines to be Administered</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
               <?php
@@ -307,9 +308,9 @@
                   echo '
                      <thead>
                       <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Offer</th>
+                        <th>Medicine</th>
+                        <th>Dosage</th>
+                        <th>Prescription Time</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -321,7 +322,7 @@
                     echo '<td>'.$data['product_name'].'</td>';
                     echo '<td>'.$data['product_price'].'</td>';
                     echo '<td>'.$data['product_offer'].'</td>';
-                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">View Product</button></a></td>';
+                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">Administered</button></a></td>';
                     echo '</tr>';
                     
                   }
