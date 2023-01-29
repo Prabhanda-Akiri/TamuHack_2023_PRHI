@@ -54,7 +54,7 @@
 
    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style='background-color: #7c917f;max-width: 80em;'>
       <header class="masthead mb-60">
-        <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPAT</b></h3>
+        <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPATCare</b></h3>
         <div class="inner">
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="nav_home.php">Home</a>
@@ -77,22 +77,22 @@
         <br>
         <br>
         <address>
-          <h5 class="name"> Makers of INPAT</h5>
+          <h5 class="name"> Makers of INPATCare</h5>
           <a href="mailto:">jim@rock.com</a><br>
           <a href="tel:+13115552368">(311) 555-2368</a>
         </address>
         <address>
-          <h5 class="name"> Makers of INPAT</h5>
+          <h5 class="name"> Makers of INPATCare</h5>
           <a href="mailto:">jim@rock.com</a><br>
           <a href="tel:+13115552368">(311) 555-2368</a>
         </address>
         <address>
-          <h5 class="name"> Makers of INPAT</h5>
+          <h5 class="name"> Makers of INPATCare</h5>
           <a href="mailto:">jim@rock.com</a><br>
           <a href="tel:+13115552368">(311) 555-2368</a>
         </address>
         <address>
-          <h5 class="name"> Makers of INPAT</h5>
+          <h5 class="name"> Makers of INPATCare</h5>
           <a href="mailto:">jim@rock.com</a><br>
           <a href="tel:+13115552368">(311) 555-2368</a>
         </address>
