@@ -1,0 +1,94 @@
+select product_id from product where product_category like "soap%"
+
+
+//ctg +vws
+select p.product_id from product p inner join history h on h.product_id=p.product_id where p.product_id in( select product_id from product where product_category like "soap%") order by h.no_of_views desc
+
+//
+select p.product_id from product p inner join history h on h.product_id=p.product_id where p.product_id in( select product_id from product where product_category like "soap%") order by p.product_offer desc
+
+//
+select p.product_id from product p inner join history h on h.product_id=p.product_id where p.product_id in( select product_id from product where product_category like "soap%") order by p.product_offer desc ,h.no_of_views desc
+
+
+//cat+cmp
+select p.* 
+from product p inner join supplier s on p.supplier_id=s.s_id 
+where 
+p.supplier_id=(select s1.s_id from supplier s1 where s1.s_name="Herbal") and 
+p.product_status="accepted" and 
+p.product_category="soap"
+
+
+//cat+comp views search
+
+select p1.* 
+from history h inner join product p1 
+on p1.product_id=h.product_id 
+where 
+p1.product_id in 
+(select p.* 
+from product p inner join supplier s on p.supplier_id=s.s_id 
+where 
+p.supplier_id=(select s1.s_id from supplier s1 where s1.s_name="Herbal") and 
+p.product_status="accepted" and 
+p.product_category="soap"
+) 
+group by h.product_id 
+order by h.no_of_views desc
+
+
+//cat + comp offer sort
+
+select p.* 
+from product p inner join supplier s 
+on s.s_id=p.supplier_id 
+where 
+s.s_name="Herbal" and 
+p.product_category="soap" 
+order by p.product_offer desc
+
+
+// cat offer
+select p.* 
+from product p
+where p.product_category="input"
+order by p.product_offer desc
+
+
+//tax 
+
+
+Update cart set product_bill=((select p_mrp form product where p_id=pid)*0.01*((select s.tax from state_tax as s,customer as c where c.c_state=s.state_name)+(select t.discount from tax as t, product as p, cart as c where c.pid=p.p_id and p.p_category=t.product_category))) where p_id=pid; 
+
+update cart set c.product_bill=((selelct p.product_price from product p where p.product_id=c.product_id)+)
+
+//products final costs 
+
+update cart c inner join product p on p.product_id=c.product_id
+set c.final_cost=(p.product_price+
+(p.product_price*
+0.01*
+(
+(select s.tax from shipping_tax as s,customer as cu where cu.customer_state=s.state)+
+(select cat.tax from tax cat where cat.product_category=p.product_category)-
+p.product_offer
+)
+)
+)*c.no_of_items
+
+
+//
+\
+
+Relations:
+Product(product_id,product_name,product_category,product_status,product_price,product_offer,product_description,supplier_id)
+Supplier(s_id,s_name,s_mail,s_password)
+Admin
+Customer(customer_id,customer_name,customer_passwd,customer_address,customer_email,customer_state,customer_ph_no)
+History(customer_id,invoice_no,no_of_views,product_id)
+Cart(product_id,no_products,final_cost)
+Invoice(invoice_no,transaction_bill)
+Tax(product_category,tax)
+Shipping tax(state,tax)
+
