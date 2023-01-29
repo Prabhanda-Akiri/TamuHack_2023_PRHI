@@ -12,7 +12,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="Images/icon2.png">
 
     <title>Nurse Home</title>
 
@@ -207,17 +207,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>Bettermart</b></a>
+          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPAT</b></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="logout.php" style="color: white;"><b>Logout</b></a></li>
-            <li><a href="cart.php" style="color: white;"><b>Cart</b></a></li>
+            <!-- <li><a href="cart.php" style="color: white;"><b>Cart</b></a></li> -->
             
           </ul>
-          <form class="navbar-form navbar-right">
+          <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search for the products...">
-          </form>
+          </form> -->
         </div>
       </div>
     </nav>
@@ -228,8 +228,8 @@
           <div class="sidebar-sticky" >
           <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" href="#"><span data-feather="home"></span><b>Home</b><span class="sr-only">(current)</span></a></li>
-            <li><a class="nav-link" href="user_myaccount.php"><span data-feather="calendar"></span><b>My account</b></a></li>
-            <li><a  class="nav-link" href="user_history.php"><span data-feather="clock"></span><b>History</b></a></li>
+            <!-- <li><a class="nav-link" href="user_myaccount.php"><span data-feather="calendar"></span><b>My account</b></a></li>
+            <li><a  class="nav-link" href="user_history.php"><span data-feather="clock"></span><b>History</b></a></li> -->
           </ul>
 		  </div>
         </div>
@@ -237,32 +237,29 @@
         <!-- Content div in user home -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h2 class="cover-heading">Medicines On the Way</h2><hr>
+          <h2 class="cover-heading">Medicines To Deliver</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
 
               <?php
 
                 include "sql_access.php";
-
+                
                 $patient_user_id=$_SESSION['patient_user_id'];
-                $curr_time = time();
-                $sql1="(select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'IDLE') UNION (select m.medicine_name, pr.dosage_quantity, mt.medicine_type_measure, pr.dosage_time, pr.prescription_id from prescription pr inner join medicine m on pr.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = pr.patient_id where pt.patient_user_id = 'john.gary@gmail.com' and pr.dosage_time > '$curr_time' order by p.dosage_time asc)";
-                // $result1=mysqli_query($connect,$sql1);
-                // $result2=mysqli_query($connect,$sql2);
+                $curr_time = date("H:i:s");
+                $sql1="(select pt.patient_name, pt.patient_room_no, m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time as dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where a.prescription_status = 'IDLE') UNION (select pt.patient_name, pt.patient_room_no, m.medicine_name, pr.dosage_quantity, mt.medicine_type_measure, pr.dosage_time as dosage_time, pr.prescription_id from prescription pr inner join medicine m on pr.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = pr.patient_id where pr.dosage_time > '$curr_time') order by dosage_time asc";
                 
                 $result1=mysqli_query($connect,$sql1);
-                while($result1) {
-                    echo print_r($result1);
-                }
-                $chck1=mysqli_num_rows($result1);
-                $chck2=mysqli_num_rows($result2);
 
-                if($chck1>0 or $chck2>0)
+                $chck1=mysqli_num_rows($result1);
+
+                if($chck1>0)
                 {
                   echo '
                      <thead>
                       <tr>
+                      <th>Patient Name</th>
+                      <th>Room #</th>
                       <th>Medicine</th>
                       <th>Dosage</th>
                       <th>Prescription Time</th>
@@ -274,23 +271,12 @@
                   while ($data1=mysqli_fetch_array($result1))
                   {
                     echo '<tr>';
-                    echo '<td>'.$data1['medicine_name'].'</td>';
+                    echo '<td>'.$data1['patient_name'].'</td>';
+                    echo '<td>'.$data1['patient_room_no'].'</td>';
+                    echo '<td><form method="post"><input type="hidden" name="prescription_id" value='.$data1['prescription_id'].'>'.$data1['medicine_name'].'</td>';
                     echo '<td>'.$data1['dosage_quantity'].' '.$data1['medicine_type_measure'].'</td>';
                     echo '<td>'.$data1['dosage_time'].'</td>';
-                    echo '<td><form method="post"><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
-                    echo '<td><input type="submit" class="btn btn-primary" name= "button_invalidate" value="In-validate"></form></td>';
-                    //echo $looping;
-                    echo '</tr>';
-                    $looping++;
-                  }
-                  while ($data2=mysqli_fetch_array($result2))
-                  {
-                    echo '<tr>';
-                    echo '<td>'.$data2['medicine_name'].'</td>';
-                    echo '<td>'.$data2['dosage_quantity'].' '.$data2['medicine_type_measure'].'</td>';
-                    echo '<td>'.$data2['dosage_time'].'</td>';
-                    echo '<td><form method="post"><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
-                    echo '<td><input type="submit" class="btn btn-primary" name= "button_invalidate" value="In-validate"></form></td>';
+                    echo '<td><input type="submit" class="btn btn-primary" name= "button_received" value="Deliver"></form></td>';
                     //echo $looping;
                     echo '</tr>';
                     $looping++;
@@ -333,22 +319,11 @@
 </html>
 
 <?php
-/*  
-    $sql="select p.product_id from product p";
-
-    $result=mysqli_query($connect,$sql);
-
-    if($_GET)
-    {
-    while($data=mysqli_fetch_array($result))
-    {
-      if(isset($_GET[$data['product_id']]))
-      {
-        $_SESSION['product_id']=$data['product_id'];
-        echo "<script> location.href='product_description.php'; </script>";
-        exit;
-      }
-    }
-    }
-*/
+IF(ISSET($_POST['button_invalidate'])){
+  $prs_id = $_POST['prescription_id'];
+  
+  $sql = "UPDATE prescription_activity SET prescription_status='PICKED-UP' WHERE prescription_id = '$prs_id'";
+    $result = mysqli_query($connect,$sql);    
+echo "<meta http-equiv='refresh' content='0'>";
+  };
 ?>

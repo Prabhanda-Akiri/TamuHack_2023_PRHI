@@ -212,12 +212,12 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="logout.php" style="color: white;"><b>Logout</b></a></li>
-            <li><a href="cart.php" style="color: white;"><b>Cart</b></a></li>
+            <!-- <li><a href="cart.php" style="color: white;"><b>Cart</b></a></li> -->
             
           </ul>
-          <form class="navbar-form navbar-right">
+          <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search for the products...">
-          </form>
+          </form> -->
         </div>
       </div>
     </nav>
@@ -228,8 +228,8 @@
           <div class="sidebar-sticky" >
           <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link active" href="#"><span data-feather="home"></span><b>Home</b><span class="sr-only">(current)</span></a></li>
-            <li><a class="nav-link" href="user_myaccount.php"><span data-feather="calendar"></span><b>My account</b></a></li>
-            <li><a  class="nav-link" href="user_history.php"><span data-feather="clock"></span><b>History</b></a></li>
+            <!-- <li><a class="nav-link" href="user_myaccount.php"><span data-feather="calendar"></span><b>My account</b></a></li>
+            <li><a  class="nav-link" href="user_history.php"><span data-feather="clock"></span><b>History</b></a></li> -->
           </ul>
 		  </div>
         </div>
