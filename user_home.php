@@ -207,7 +207,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPAT</b></a>
+          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPAT-care</b></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -297,7 +297,7 @@
 
                 include "sql_access.php";
 
-                $customer_id=$_SESSION['customer_id'];
+                $patient_user_id=$_SESSION['patient_user_id'];
 
                 $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'DELIVERED'";
 
@@ -335,6 +335,49 @@
                 // {
                 //     echo '<th>No Hot picks yet</th>';
                 // }
+              ?>
+          </div>
+          <h2 class="sub-header">Prescription History</h2><hr>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <?php
+
+                include "sql_access.php";
+
+                $patient_user_id=$_SESSION['patient_user_id'];
+
+                $sql="select m.medicine_name, p.dosage_frequency, p.dosage_quantity, mt.medicine_type_measure, p.prescription_id, a.prescription_date from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'ADMINISTERED' order by prescription_date desc";
+
+                $result=mysqli_query($connect,$sql);
+                $chck=mysqli_num_rows($result);
+
+                if($chck>0)
+                {
+                  echo '
+                     <thead>
+                      <tr>
+                      <th>Medicine</th>
+                      <th>Daily Dosage</th>
+                      <th>Dosage</th>
+                      <th>Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                  ';
+
+                  while ($data=mysqli_fetch_array($result))
+                  {
+                    echo '<tr>';
+                    echo '<td>'.$data['medicine_name'].'</td>';
+                    echo '<td>'.$data['dosage_frequency'].'</td>';
+                    echo '<td>'.$data['dosage_quantity'].' '.$data['medicine_type_measure'].'</td>';
+                    echo '<td>'.$data['prescription_date'].'</td>';
+                    echo '</tr>';
+                    
+                  }
+                    echo '</tbody>
+                    </table>';
+                }
               ?>
           </div>
         </div>
