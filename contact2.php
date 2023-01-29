@@ -47,7 +47,7 @@
         border-top-right-radius: 0;
       }
   </style>
-  <link rel="icon" href="cp2.png">
+  <link rel="icon" href="Images/icon2.png">
   </head>
 
   <body class="text-center">
