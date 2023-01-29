@@ -333,7 +333,9 @@ IF(ISSET($_POST['button_received'])){
     $sql2 = "INSERT INTO prescription_activity(prescription_id, prescription_date, prescription_status) VALUES ('$prs_id','$curr_date','PICKED-UP')";
     $result2 = mysqli_query($connect,$sql2); 
   }
-     
-echo "<meta http-equiv='refresh' content='0'>";
+
+  echo "<meta http-equiv='refresh' content='0'>";
+  echo "<script language=\"javascript\">alert(\"Go to the assigned patient's room with the assigned medication. \");document.location.href='nurse_home.php';</script>";
+
   };
 ?>
