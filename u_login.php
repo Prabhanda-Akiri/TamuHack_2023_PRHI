@@ -54,7 +54,7 @@
 
    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style='background-color: #7c917f;max-width: 80em;'>
       <header class="masthead mb-60">
-        <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPAT</b></h3>
+        <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPATCare</b></h3>
         <div class="inner">
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="nav_home.php">Home</a>
@@ -73,7 +73,7 @@
               <img src="">
 
 
-              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPAT</b></h1>
+              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPATCare</b></h1>
               <input type="radio" name="usertype" id="Nursing_Station" value=1 />
               <label for="Nursing_Station">Nursing Station</label>
 

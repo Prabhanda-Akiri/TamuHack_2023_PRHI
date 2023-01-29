@@ -77,7 +77,7 @@
   <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style='background-color: #7c917f;max-width: 80em;'>
       <header class="masthead mb-60">
-        <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPAT</b></h3>
+        <h3 class="masthead-brand" style="font-family: 'Merienda'; font-size: 38px;"><b>INPATCare</b></h3>
         <div class="inner">
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link" href="nav_home.php">Home</a>
@@ -124,7 +124,7 @@
         </main>
 		<footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Sign Up page for INPAT</a>
+          <p>Sign Up page for INPATCare</a>
           <!-- , by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>. -->
           </p>
         </div>

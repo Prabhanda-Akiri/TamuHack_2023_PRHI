@@ -207,7 +207,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPAT-care</b></a>
+          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPATCare</b></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -237,7 +237,7 @@
         <!-- Content div in user home -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-          <h2 class="cover-heading">Medicines On the Way</h2><hr>
+          <h2 class="cover-heading">On The Way</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
 
@@ -290,7 +290,7 @@
             
           </div>
 
-          <h2 class="sub-header">Medicines to be Administered</h2><hr>
+          <h2 class="sub-header">To Be Administered</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
               <?php
@@ -337,7 +337,7 @@
                 // }
               ?>
           </div>
-          <h2 class="sub-header">Prescription History</h2><hr>
+          <h2 class="sub-header">Medicines History</h2><hr>
           <div class="table-responsive">
             <table class="table table-striped">
               <?php
