@@ -60,7 +60,7 @@
             <a class="nav-link" href="nav_home.php">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
             <a class="nav-link" href="user_signup.php" id="reg">Register</a>
-            <a class="nav-link" href="#" id="contact">Contact Us</a>
+            <a class="nav-link" href="contact2.php" id="contact">Contact Us</a>
           </nav>
         </div>
 		<br>
@@ -72,19 +72,14 @@
             <form class="form-signin" method="post" action="">
               <img src="">
 
-              <!-- <div class="tab" name="usertype">
-                <button class="tablinks" value="1">Nursing Station</button>
-                <button class="tablinks" value="0">Patient</button>
-              </div> -->
 
+              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPAT</b></h1>
               <input type="radio" name="usertype" id="Nursing_Station" value=1 />
               <label for="Nursing_Station">Nursing Station</label>
 
               <input type="radio" name="usertype" id="Patient" value=2 />
               <label for="Patient">Patient</label>
 
-
-              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPAT</b></h1>
               <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
               <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
               <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>

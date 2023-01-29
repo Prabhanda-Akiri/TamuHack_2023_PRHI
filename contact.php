@@ -56,7 +56,7 @@
             <a class="nav-link" href="nav_home.php">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
             <a class="nav-link" href="user_signup.php" id="reg">Register</a>
-            <a class="nav-link" href="#" id="contact">Contact Us</a>
+            <a class="nav-link" href="contact.php" id="contact">Contact Us</a>
           </nav>
         </div>
       </header>
@@ -65,10 +65,17 @@
 	  
         <div id="display">
 		
-          <h1 class="lead">We got you!</h1>
-          <h1 class="cover-heading">We got you!</h1>
-          <p class="lead">Grocery shopping? No worries, it is just a click away!</p>
-		  <img src="cp2.png" style="max-width: 46%;height: auto;">
+          <!-- <h1 class="lead">We got you!</h1> -->
+          <!-- <h1 class="cover-heading">We got you!</h1> -->
+          <!-- <p class="lead">INPAT - Our Interactive and Efficient Medicine Management System!</p> -->
+		  <!-- <img src="cp2.png" style="max-width: 46%;height: auto;"> -->
+      <h1 class="cover-heading">Contact us:</h1>
+      <address>
+        <h5 class="name"> Makers of INPAT</h5>
+        <a href="mailto:">jim@rock.com</a><br>
+        <a href="tel:+13115552368">(311) 555-2368</a>
+      </address>
+
 		<br>
         </div>
       </main>

@@ -28,7 +28,7 @@
             <a class="nav-link" href="#">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
             <a class="nav-link" href="user_signup.php" id="reg">Register</a>
-            <a class="nav-link" href="#" id="contact">Contact Us</a>
+            <a class="nav-link" href="contact2.php" id="contact">Contact Us</a>
           </nav>
         </div>
       </header>

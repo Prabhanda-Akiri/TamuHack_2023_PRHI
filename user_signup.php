@@ -83,7 +83,7 @@
             <a class="nav-link" href="nav_home.php">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
             <a class="nav-link" href="user_signup.php" id="reg">Register</a>
-            <a class="nav-link" href="#" id="contact">Contact Us</a>
+            <a class="nav-link" href="contact2.php" id="contact">Contact Us</a>
           </nav>
         </div>
       </header>
@@ -98,8 +98,8 @@
               <label for="inputEmail" class="sr-only">Email address</label>
               <input type="email" id="inputEmail" class="form-control" name="mail" placeholder="Email ID" required autofocus>
 
-              <label for="contactno" class="sr-only">Contact No.</label>
-              <input type="number" id="contactno" class="form-control" name="phno" placeholder="Mobile number" required autofocus>
+              <label for="roomno" class="sr-only">Room No.</label>
+              <input type="number" id="roomno" class="form-control" name="roomno" placeholder="Room Number" required autofocus>
 			
 			<!--
               <label for="address" class="sr-only">Address</label>
@@ -135,13 +135,13 @@
 include "sql_access.php";
 
 IF(ISSET($_POST['sup'])){
-$sql="INSERT INTO customer(customer_name,customer_passwd,customer_address,customer_email,customer_state,customer_ph_no) VALUES
+$sql="INSERT INTO patient(patient_name,patient_password,patient_user_id,patient_room_no) VALUES
 
-('$_POST[name]','$_POST[passwd]','$_POST[address]','$_POST[mail]','$_POST[state]','$_POST[phno]')";
+('$_POST[name]','$_POST[passwd]','$_POST[mail]','$_POST[roomno]')";
 
 if (!mysqli_query($connect,$sql))
   {
-  die('Error: ' . mysqli_error("could not signed in"));
+  die('Error: ' . mysqli_error("could not sign in"));
   }
 else
   echo "<script language=\"javascript\">alert(\"Successfully signed up\");document.location.href='u_login.php';</script>";
