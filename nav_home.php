@@ -36,7 +36,7 @@
       <main role="main" class="inner cover" id="Main">
         <div id="display">
           <h1 class="cover-heading">We got you!</h1>
-          <p class="lead">INPAT - Our Interactive and Efficient Medicine Management System!</p>
+          <p class="lead">INPAT-care, Our Interactive and Efficient Medicine Management System!</p>
 		  <img src="Images/Patient_care.png" style="max-width: 76%;height: auto;">
 		<br>
         </div>
@@ -44,7 +44,7 @@
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Home page for INPAT</a>
+          <p>Home page for INPAT-care</a>
           <!-- , by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>. -->
           </p>
         </div>
