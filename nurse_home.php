@@ -207,7 +207,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPAT</b></a>
+          <a class="navbar-brand" href="#" style="font-family: 'Merienda'; font-size: 38px;color: white"><b>INPAT-care</b></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -245,9 +245,8 @@
 
                 include "sql_access.php";
                 
-                $patient_user_id=$_SESSION['patient_user_id'];
                 $curr_time = date("H:i:s");
-                $sql1="(select pt.patient_name, pt.patient_room_no, m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time as dosage_time, p.prescription_id from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where a.prescription_status = 'IDLE') UNION (select pt.patient_name, pt.patient_room_no, m.medicine_name, pr.dosage_quantity, mt.medicine_type_measure, pr.dosage_time as dosage_time, pr.prescription_id from prescription pr inner join medicine m on pr.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = pr.patient_id where pr.dosage_time > '$curr_time') order by dosage_time asc";
+                $sql1="((select pt.patient_name, pt.patient_room_no, m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time as dosage_time, p.prescription_id as prescription_id1 from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where a.prescription_status = 'IDLE') UNION (select pt.patient_name, pt.patient_room_no, m.medicine_name, pr.dosage_quantity, mt.medicine_type_measure, pr.dosage_time as dosage_time, pr.prescription_id as prescription_id1 from prescription pr inner join medicine m on pr.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = pr.patient_id where pr.dosage_time > '$curr_time' and prescription_id NOT IN (select p1.prescription_id as prescription_id from prescription p1 inner join prescription_activity a1 on p1.prescription_id = a1.prescription_id inner join medicine m1 on p1.medicine_id = m1.medicine_id inner join medicine_types mt1 on m1.medicine_type_id = mt1.medicine_type_id inner join patient pt1 on pt1.patient_id = p1.patient_id where a1.prescription_status = 'PICKED-UP'))) order by dosage_time asc";
                 
                 $result1=mysqli_query($connect,$sql1);
 
@@ -273,7 +272,7 @@
                     echo '<tr>';
                     echo '<td>'.$data1['patient_name'].'</td>';
                     echo '<td>'.$data1['patient_room_no'].'</td>';
-                    echo '<td><form method="post"><input type="hidden" name="prescription_id" value='.$data1['prescription_id'].'>'.$data1['medicine_name'].'</td>';
+                    echo '<td><form method="post"><input type="hidden" name="prescription_id" value='.$data1['prescription_id1'].'>'.$data1['medicine_name'].'</td>';
                     echo '<td>'.$data1['dosage_quantity'].' '.$data1['medicine_type_measure'].'</td>';
                     echo '<td>'.$data1['dosage_time'].'</td>';
                     echo '<td><input type="submit" class="btn btn-primary" name= "button_received" value="Deliver"></form></td>';
@@ -319,11 +318,14 @@
 </html>
 
 <?php
-IF(ISSET($_POST['button_invalidate'])){
+IF(ISSET($_POST['button_received'])){
   $prs_id = $_POST['prescription_id'];
   
   $sql = "UPDATE prescription_activity SET prescription_status='PICKED-UP' WHERE prescription_id = '$prs_id'";
-    $result = mysqli_query($connect,$sql);    
+    $result = mysqli_query($connect,$sql);   
+    $curr_date = date("Y-m-d"); 
+    $sql = "INSERT INTO prescription_activity(prescription_id, prescription_date, prescription_status) VALUES ('$prs_id','$curr_date','PICKED-UP')";
+    $result = mysqli_query($connect,$sql);  
 echo "<meta http-equiv='refresh' content='0'>";
   };
 ?>
