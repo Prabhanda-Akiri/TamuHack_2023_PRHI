@@ -71,17 +71,29 @@
         <div id="display">
             <form class="form-signin" method="post" action="">
               <img src="">
-              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>Bettermart</b></h1>
+
+              <!-- <div class="tab" name="usertype">
+                <button class="tablinks" value="1">Nursing Station</button>
+                <button class="tablinks" value="0">Patient</button>
+              </div> -->
+
+              <input type="radio" name="usertype" id="Nursing_Station" value=1 />
+              <label for="Nursing_Station">Nursing Station</label>
+
+              <input type="radio" name="usertype" id="Patient" value=2 />
+              <label for="Patient">Patient</label>
+
+
+              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPAT</b></h1>
               <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
               <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
               <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
             </form>			
 			<div class="mastfoot mt-auto">
-          <p>New to Bettermart?</a> <a href="user_signup.php">Create an account</a></p>
+          <p>New User?</a> <a href="user_signup.php">Create an account</a></p>
         </div>
         </div>
       </main>
-	  
     </div>
   </body>
 </html>
@@ -92,20 +104,40 @@ include "sql_access.php";
 IF(ISSET($_POST['login'])){
 $email = $_POST['email'];
 $password = $_POST['password'];
-$cek = mysqli_num_rows(mysqli_query($connect,"SELECT * FROM customer WHERE customer_email='$email' AND customer_passwd='$password'"));
-$data = mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM customer WHERE customer_email='$email' AND customer_passwd='$password'"));
-IF($cek > 0)
-{
- session_start();
- $_SESSION['email'] = $data['customer_email'];
- $_SESSION['name'] = $data['customer_name'];
- $_SESSION['customer_id']=$data['customer_id'];
+$usertype = $_POST['usertype'];
 
- echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='user_home.php';</script>";
- 
-}else{
- echo "<script language=\"javascript\">alert(\"Invalid username or password\");document.location.href='u_login.php';</script>";
+echo "<script>console.log('hello nurse');</script>";
+IF($_POST['usertype']==1){
+  // echo "<script>console.log('hello outside');</script>";
+  $cek = mysqli_num_rows(mysqli_query($connect,"SELECT * FROM nursing_station WHERE nurse_user_id='$email' AND nurse_password='$password'"));
+  $data = mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM nursing_station WHERE nurse_user_id='$email' AND nurse_password='$password'"));
+  IF($cek > 0)
+  {
+    session_start();
+    $_SESSION['nurse_user_id']=$data['nurse_user_id'];
+    
+    echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='user_home.php';</script>";
+    
+  }else{
+    echo "<script language=\"javascript\">alert(\"Invalid username or password\");document.location.href='u_login.php';</script>";
+  }
+}
+else{
+  // echo "<script>console.log('hello patient');</script>";
+  $cek = mysqli_num_rows(mysqli_query($connect,"SELECT * FROM patient WHERE patient_user_id='$email' AND patient_password='$password'"));
+  $data = mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM patient WHERE patient_user_id='$email' AND patient_password='$password'"));
+  IF($cek > 0)
+  {
+    session_start();
+    $_SESSION['patient_id'] = $data['patient_id'];
+    $_SESSION['name'] = $data['patient_name'];
+    $_SESSION['patient_user_id']=$data['patient_user_id'];
+
+    echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='user_home.php';</script>";
+    
+  }else{
+    echo "<script language=\"javascript\">alert(\"Invalid username or password\");document.location.href='u_login.php';</script>";
+  }
 }
 }
-
 ?>
