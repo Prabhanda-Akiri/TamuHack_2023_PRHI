@@ -245,9 +245,9 @@
 
                 include "sql_access.php";
 
-                $customer_id=$_SESSION['customer_id'];
+                $patient_user_id=$_SESSION['patient_user_id'];
 
-                $sql="select p.product_name,p.product_id, p.product_offer, p.product_price from product p inner join history h on p.product_id=h.product_id where h.customer_id='$customer_id' and p.product_status='accepted' order by h.no_of_views desc limit 10";
+                $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'PICKED-UP'";
 
                 $result=mysqli_query($connect,$sql);
                 $chck=mysqli_num_rows($result);
@@ -268,9 +268,9 @@
                   while ($data=mysqli_fetch_array($result))
                   {
                     echo '<tr>';
-                    echo '<td>'.$data['product_name'].'</td>';
-                    echo '<td>'.$data['product_price'].'</td>';
-                    echo '<td>'.$data['product_offer'].'</td>';
+                    echo '<td>'.$data['medicine_name'].'</td>';
+                    echo '<td>'.$data['dosage_quantity'].$data['medicine_type_measure'].'</td>';
+                    echo '<td>'.$data['dosage_time'].'</td>';
                     echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">Received</button></a></td>';
                     echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">In-validate</button></a></td>';
                     //echo $looping;
@@ -298,7 +298,7 @@
 
                 $customer_id=$_SESSION['customer_id'];
 
-                $sql="select distinct p.product_name,p.product_id,p.product_offer, p.product_price from product p inner join history h on p.product_id=h.product_id and p.product_status='accepted' order by h.no_of_views desc limit 10";
+                $sql="select m.medicine_name, p.dosage_quantity, mt.medicine_type_measure, p.dosage_time from prescription p inner join prescription_activity a on p.prescription_id = a.prescription_id inner join medicine m on p.medicine_id = m.medicine_id inner join medicine_types mt on m.medicine_type_id = mt.medicine_type_id inner join patient pt on pt.patient_id = p.patient_id where pt.patient_user_id = '$patient_user_id' and a.prescription_status = 'DELIVERED'";
 
                 $result=mysqli_query($connect,$sql);
                 $chck=mysqli_num_rows($result);
@@ -319,9 +319,9 @@
                   while ($data=mysqli_fetch_array($result))
                   {
                     echo '<tr>';
-                    echo '<td>'.$data['product_name'].'</td>';
-                    echo '<td>'.$data['product_price'].'</td>';
-                    echo '<td>'.$data['product_offer'].'</td>';
+                    echo '<td>'.$data['medicine_name'].'</td>';
+                    echo '<td>'.$data['dosage_quantity'].$data['medicine_type_measure'].'</td>';
+                    echo '<td>'.$data['dosage_time'].'</td>';
                     echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">Administered</button></a></td>';
                     echo '</tr>';
                     
