@@ -47,7 +47,7 @@
         border-top-right-radius: 0;
       }
   </style>
-  <link rel="icon" href="cp2.png">
+  <link rel="icon" href="Images/icon2.png">
   </head>
 
   <body class="text-center">
@@ -111,7 +111,7 @@ IF($_POST['usertype']==1){
     session_start();
     $_SESSION['nurse_user_id']=$data['nurse_user_id'];
     
-    echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='user_home.php';</script>";
+    echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='nurse_home.php';</script>";
     
   }else{
     echo "<script language=\"javascript\">alert(\"Invalid username or password\");document.location.href='u_login.php';</script>";

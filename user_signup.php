@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="Images/icon2.png">
     
 
     <title>User Sign Up</title>
@@ -71,7 +71,7 @@
         border-top-right-radius: 0;
       }
     </style>
-
+    
   </head>
 
   <body class="text-center">
@@ -124,7 +124,9 @@
         </main>
 		<footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Sign Up page for INPAT</a>, by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>.</p>
+          <p>Sign Up page for INPAT</a>
+          <!-- , by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>. -->
+          </p>
         </div>
       </footer>
     </div>
