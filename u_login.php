@@ -47,7 +47,7 @@
         border-top-right-radius: 0;
       }
   </style>
-  <link rel="icon" href="cp2.png">
+  <link rel="icon" href="Images/icon2.png">
   </head>
 
   <body class="text-center">
@@ -60,7 +60,7 @@
             <a class="nav-link" href="nav_home.php">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
             <a class="nav-link" href="user_signup.php" id="reg">Register</a>
-            <a class="nav-link" href="#" id="contact">Contact Us</a>
+            <a class="nav-link" href="contact2.php" id="contact">Contact Us</a>
           </nav>
         </div>
 		<br>
@@ -72,19 +72,14 @@
             <form class="form-signin" method="post" action="">
               <img src="">
 
-              <!-- <div class="tab" name="usertype">
-                <button class="tablinks" value="1">Nursing Station</button>
-                <button class="tablinks" value="0">Patient</button>
-              </div> -->
 
+              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPAT</b></h1>
               <input type="radio" name="usertype" id="Nursing_Station" value=1 />
               <label for="Nursing_Station">Nursing Station</label>
 
               <input type="radio" name="usertype" id="Patient" value=2 />
               <label for="Patient">Patient</label>
 
-
-              <h1 class="h4 mb-4 font-weight-normal">Sign in to <b>INPAT</b></h1>
               <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
               <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
               <button class="btn btn-lg btn-primary btn-block" type="submit" name="login">Login</button>
@@ -116,7 +111,7 @@ IF($_POST['usertype']==1){
     session_start();
     $_SESSION['nurse_user_id']=$data['nurse_user_id'];
     
-    echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='user_home.php';</script>";
+    echo "<script language=\"javascript\">alert(\"welcome \");document.location.href='nurse_home.php';</script>";
     
   }else{
     echo "<script language=\"javascript\">alert(\"Invalid username or password\");document.location.href='u_login.php';</script>";

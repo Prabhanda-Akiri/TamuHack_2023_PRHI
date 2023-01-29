@@ -7,7 +7,7 @@
     <meta name="author" content="">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="Images/icon2.png">
 
     <title>Home</title>
 
@@ -28,7 +28,7 @@
             <a class="nav-link" href="#">Home</a>
             <a class="nav-link" href="u_login.php" id="login">Login</a>
             <a class="nav-link" href="user_signup.php" id="reg">Register</a>
-            <a class="nav-link" href="#" id="contact">Contact Us</a>
+            <a class="nav-link" href="contact2.php" id="contact">Contact Us</a>
           </nav>
         </div>
       </header>
@@ -44,7 +44,9 @@
 
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Home page for INPAT</a>, by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>.</p>
+          <p>Home page for INPAT</a>
+          <!-- , by  <a href="https://www.linkedin.com/in/sahithi-akiri-901116147/" target="_blank">Sahithi Akiri</a>. -->
+          </p>
         </div>
       </footer>
     </div>
