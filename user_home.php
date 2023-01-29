@@ -268,10 +268,10 @@
                   while ($data=mysqli_fetch_array($result))
                   {
                     echo '<tr>';
-                    echo '<td>'.$data['medicine_name'].'</td>';
+                    echo '<td><form method="post"><input type="hidden" name="prescription_id1" value='.$data['prescription_id'].'>'.$data['medicine_name'].'</td>';
                     echo '<td>'.$data['dosage_quantity'].' '.$data['medicine_type_measure'].'</td>';
                     echo '<td>'.$data['dosage_time'].'</td>';
-                    echo '<td><form method="post"><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
+                    echo '<td><input type="submit" class="btn btn-primary" name= "button_received" value="Received"></td>';
                     echo '<td><input type="submit" class="btn btn-primary" name= "button_invalidate" value="In-validate"></form></td>';
                     //echo $looping;
                     echo '</tr>';
@@ -279,12 +279,13 @@
                   }
                     echo '</tbody>
                     </table>';
+                  
                 }
 
-                else
-                {
-                    echo '<th>No Medications to give now</th>';
-                }
+                // else
+                // {
+                //     echo '<th>No Medications to give now</th>';
+                // }
               ?>
             
           </div>
@@ -319,10 +320,10 @@
                   while ($data=mysqli_fetch_array($result))
                   {
                     echo '<tr>';
-                    echo '<td>'.$data['medicine_name'].'</td>';
+                    echo '<td><form method="post"><input type="hidden" name="prescription_id2" value='.$data['prescription_id'].'>'.$data['medicine_name'].'</td>';
                     echo '<td>'.$data['dosage_quantity'].$data['medicine_type_measure'].'</td>';
                     echo '<td>'.$data['dosage_time'].'</td>';
-                    echo '<td><a href="\orms\product_description.php?product_id='.$data['product_id'].'"><button type="button" class="btn btn-primary">Administered</button></a></td>';
+                    echo '<td><input type="submit" class="btn btn-primary" name= "button_administered" value="Administered"></form></td>';
                     echo '</tr>';
                     
                   }
@@ -330,10 +331,10 @@
                     </table>';
                 }
 
-                else
-                {
-                    echo '<th>No Hot picks yet</th>';
-                }
+                // else
+                // {
+                //     echo '<th>No Hot picks yet</th>';
+                // }
               ?>
           </div>
         </div>
@@ -362,22 +363,27 @@
 </html>
 
 <?php
-/*  
-    $sql="select p.product_id from product p";
+IF(ISSET($_POST['button_received'])){
+  $prs_id = $_POST['prescription_id1'];
+  
+  $sql = "UPDATE prescription_activity SET prescription_status='DELIVERED' WHERE prescription_id = '$prs_id'";
+    $result = mysqli_query($connect,$sql);
+    
+echo "<meta http-equiv='refresh' content='0'>";
+  };
+IF(ISSET($_POST['button_invalidate'])){
+  $prs_id = $_POST['prescription_id1'];
+  
+  $sql = "UPDATE prescription_activity SET prescription_status='IDLE' WHERE prescription_id = '$prs_id'";
+    $result = mysqli_query($connect,$sql);
 
-    $result=mysqli_query($connect,$sql);
-
-    if($_GET)
-    {
-    while($data=mysqli_fetch_array($result))
-    {
-      if(isset($_GET[$data['product_id']]))
-      {
-        $_SESSION['product_id']=$data['product_id'];
-        echo "<script> location.href='product_description.php'; </script>";
-        exit;
-      }
-    }
-    }
-*/
+    echo "<meta http-equiv='refresh' content='0'>";
+  };
+IF(ISSET($_POST['button_administered'])){
+  $prs_id = $_POST['prescription_id2'];
+  
+  $sql = "UPDATE prescription_activity SET prescription_status='ADMINISTERED' WHERE prescription_id = '$prs_id'";
+    $result = mysqli_query($connect,$sql);    
+echo "<meta http-equiv='refresh' content='0'>";
+  };
 ?>
