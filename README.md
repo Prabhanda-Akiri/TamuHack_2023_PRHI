@@ -1,5 +1,7 @@
 This is a PRHI Challenge submitted for TAMU Hack 2023.
 
+[embed]https://github.com/Prabhanda-Akiri/TamuHack_2023_PRHI/blob/c42acf05f298e30742e986289b69ddfcae1cd703/INPATCare.pdf[/embed]
+
 ## Inspiration
 Being a first-hand witness to the medical process and interacting with hospital staff, there is a huge scope for confusion while giving medicinal dosages, especially in acute ailment cases. The purpose of this app is to reduce the risk to patients' lives that may happen due to incorrect dosages.
 
