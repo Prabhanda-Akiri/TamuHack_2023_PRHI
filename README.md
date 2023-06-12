@@ -1,4 +1,6 @@
 This is a PRHI Challenge submitted for TAMU Hack 2023.
+Find more details about the challenge here:
+https://www.patientsafetytech.com/patient-safety
 
 Powerpoint Presentation:
 https://github.com/Prabhanda-Akiri/TamuHack_2023_PRHI/blob/4c7dbbce3d72067d72ca97ece01b8e62018888fc/INPATCare.pdf
