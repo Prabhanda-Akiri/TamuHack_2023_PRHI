@@ -22,4 +22,6 @@ We learned to work in an agile manner, splitting up the tasks among our team mem
 we plan to extend some important features of this project in the future. We can extend this to support different devices(Desktops, Tabs, Android, etc) which notify the users by sending In-app Notifications or email triggers.
 
 Watch the Youtube Video here:
+
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/EW1m5ux66So/0.jpg)](https://www.youtube.com/watch?v=EW1m5ux66So)
